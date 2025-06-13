@@ -1,0 +1,19 @@
+.footer {
+  background-color: var(--color-2);
+  padding: 20px;
+  height: 64px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.footer p {
+  color: var(--color-3);
+  font-size: 14px;
+}
+
+@media (width <= 640px) {
+  .footer {
+    justify-content: center;
+  }
+}

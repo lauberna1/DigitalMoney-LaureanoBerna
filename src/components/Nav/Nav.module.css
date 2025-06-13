@@ -1,0 +1,36 @@
+.nav {
+  background-color: var(--color-);
+  height: 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.authNav {
+  background-color: var(--color-3);
+}
+
+.logo {
+  width: 86px;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.buttons > button {
+  border-radius: 5px;
+}
+
+.buttons > button:first-child {
+  background-color: var(--color-1);
+}
+
+@media (width <= 640px) {
+  .logo {
+    width: 60px;
+  }
+}

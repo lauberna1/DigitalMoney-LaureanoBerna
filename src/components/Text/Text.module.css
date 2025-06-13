@@ -1,0 +1,69 @@
+.text {
+  margin: 0;
+  color: #000000;
+}
+
+.h1 {
+  font-size: var(--headings-h1, 48px);
+  font-weight: bold;
+}
+
+.h2 {
+  font-size: var(--headings-h2, 40px);
+  font-weight: bold;
+}
+
+.h3 {
+  font-size: var(--headings-h3, 32px);
+  font-weight: bold;
+}
+
+.h4 {
+  font-size: var(--headings-h4, 24px);
+  font-weight: bold;
+}
+
+.h5 {
+  font-size: var(--headings-h5, 20px);
+  font-weight: bold;
+}
+
+.h6 {
+  font-size: var(--headings-h6, 16px);
+  font-weight: bold;
+}
+
+.h6small {
+  font-size: var(--headings-h6small, 14px);
+  font-weight: bold;
+}
+
+.xl {
+  font-size: var(--text-xl, 20px);
+  font-weight: 400;
+  line-height: normal;
+}
+
+.lg {
+  font-size: var(--text-lg, 18px);
+  font-weight: 400;
+  line-height: normal;
+}
+
+.md {
+  font-size: var(--text-md, 16px);
+  font-weight: 400;
+  line-height: normal;
+}
+
+.sm {
+  font-size: var(--text-sm, 14px);
+  font-weight: 400;
+  line-height: normal;
+}
+
+.xs {
+  font-size: var(--text-xs, 12px);
+  font-weight: 400;
+  line-height: normal;
+}

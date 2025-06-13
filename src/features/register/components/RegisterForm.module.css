@@ -1,0 +1,54 @@
+.form {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.title {
+  font-weight: 700;
+  color: white;
+}
+
+.passwordHelp {
+  font-size: 15px;
+  color: var(--color-4);
+  font-weight: 400;
+}
+
+.errorText {
+  color: var(--color-error) !important;
+}
+
+@media (width < 840px) {
+  .form {
+    width: 100%;
+    padding: 40px 20px;
+  }
+  .grid {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .passwordHelp {
+    text-align: center;
+    font-size: 12px;
+    max-width: 390px;
+  }
+  .grid > div > input {
+    height: 50px;
+    font-size: 16px;
+  }
+  .grid > button {
+    height: 50px !important;
+  }
+}
