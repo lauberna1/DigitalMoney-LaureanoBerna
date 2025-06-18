@@ -1,0 +1,14 @@
+.buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+.buttons > a {
+  border-radius: 5px;
+}
+
+@media (width <= 640px) {
+  .buttons > a {
+    font-size: 14px !important;
+  }
+}

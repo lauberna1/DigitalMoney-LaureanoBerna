@@ -1,0 +1,40 @@
+.addCard {
+  width: 100%;
+  height: 150px;
+  padding: 30px;
+  background-color: var(--color-1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.title {
+  color: white;
+}
+
+.add {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.icon {
+  color: var(--color-3);
+  font-size: 34px;
+}
+
+.text {
+  color: var(--color-3);
+}
+
+@media (width >= 768px) {
+  .addCard {
+    height: 170px;
+  }
+}

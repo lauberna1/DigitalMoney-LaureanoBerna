@@ -1,0 +1,49 @@
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.initials {
+  background-color: var(--color-3);
+  border-radius: 8px;
+  padding: 4px 6px;
+  height: 32px;
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.name {
+  color: white;
+  font-weight: 700;
+  display: none;
+}
+
+.icon {
+  color: var(--color-3);
+  font-size: 40px;
+  padding: 0;
+}
+
+@media (width >= 768px) {
+  .initials {
+    font-size: 20px;
+  }
+  .name {
+    display: block;
+  }
+  .icon {
+    display: none;
+  }
+}

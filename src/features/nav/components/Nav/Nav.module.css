@@ -15,22 +15,17 @@
   width: 86px;
 }
 
-.buttons {
-  display: flex;
-  flex-direction: row;
-  gap: 20px;
-}
 
-.buttons > button {
-  border-radius: 5px;
-}
 
-.buttons > button:first-child {
-  background-color: var(--color-1);
-}
+
+
+
 
 @media (width <= 640px) {
   .logo {
     width: 60px;
+  }
+  .buttons > a {
+    font-size: 14px !important;
   }
 }

@@ -1,8 +1,10 @@
-import { FullStepData } from "@/features/login/types/types";
-import { RegisterFormData } from "@/features/register/types/types";
+import { User } from "@/types/globalTypes";
+import { FullStepData } from "@/types/loginTypes";
+import { RegisterFormData } from "@/types/registerTypes";
+import { useCallback } from "react";
 
 export function useAuthHook() {
-  const registerUser = async (formData: RegisterFormData) => {
+  const registerUser = useCallback(async (formData: RegisterFormData) => {
     try {
       const res = await fetch(
         "https://digitalmoney.digitalhouse.com/api/users",
@@ -22,21 +24,15 @@ export function useAuthHook() {
         }
       );
 
-      if (!res.ok) {
-        throw new Error("Error al crear la cuenta");
-      }
-
-      console.log(res);
-
+      if (!res.ok) throw new Error("Error al crear la cuenta");
       const data = await res.json();
-      console.log(data);
       return data;
     } catch {
       throw new Error("Error al crear la cuenta");
     }
-  };
+  }, []);
 
-  const loginUser = async (formData: FullStepData) => {
+  const loginUser = useCallback(async (formData: FullStepData) => {
     try {
       const res = await fetch(
         "https://digitalmoney.digitalhouse.com/api/login",
@@ -52,17 +48,37 @@ export function useAuthHook() {
         }
       );
 
-      if (!res.ok) {
-        throw new Error("Error al crear la cuenta");
-      }
-
+      if (!res.ok) throw new Error("Error al iniciar sesión");
       const JWT = await res.json();
-
       return { JWT: JWT.token };
     } catch {
-      throw new Error("Error al crear la cuenta");
+      throw new Error("Error al iniciar sesión");
     }
-  };
+  }, []);
 
-  return { registerUser, loginUser };
+  const getUser = useCallback(
+    async ({ token, userId }: { token: string; userId: number }) => {
+      try {
+        const res = await fetch(
+          `https://digitalmoney.digitalhouse.com/api/users/${userId}`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${token}`,
+            },
+          }
+        );
+
+        if (!res.ok) throw new Error("Error al obtener los datos del usuario");
+        const user: User = await res.json();
+        return { user };
+      } catch {
+        throw new Error("Error al obtener los datos del usuario");
+      }
+    },
+    []
+  );
+
+  return { registerUser, loginUser, getUser };
 }

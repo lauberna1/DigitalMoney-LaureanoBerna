@@ -1,10 +1,9 @@
-export interface User {
-  dni: number;
+import { User } from "./globalTypes";
+
+export interface DecodedToken {
+  username: number;
   email: string;
-  firstname: string;
-  lastname: string;
-  password: string;
-  phone: string;
+  exp: number;
 }
 
 export interface AuthState {
@@ -14,4 +13,5 @@ export interface AuthState {
 
 export type AuthAction =
   | { type: "LOGIN"; payload: { user: User; token: string } }
-  | { type: "LOGOUT" };
+  | { type: "LOGOUT" }
+  | { type: "SET_USER"; payload: User };

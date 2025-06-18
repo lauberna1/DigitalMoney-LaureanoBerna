@@ -8,10 +8,10 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import styles from "./RegisterForm.module.css";
 
-import { Succes } from "./Succes";
-
-import { RegisterFormData } from "../types/types";
 import { registerSchema } from "@/schema/registerSchema";
+import { Succes } from "../Succes/Succes";
+import { RegisterFormData } from "@/types/registerTypes";
+import { toast } from "react-toastify";
 
 export default function RegisterForm() {
   /* STATES */
@@ -35,9 +35,11 @@ export default function RegisterForm() {
     setError(false);
     try {
       await registerUser(data);
+      toast.success("Cuenta creada");
       setSucces(true);
     } catch {
       setError(true);
+      toast.error("Error al crear la cuenta");
     } finally {
       setLoading(false);
     }

@@ -1,4 +1,5 @@
-import s from "./page.module.css";
+import Inicio from "@/features/dashboard/Inicio/Inicio";
+
 export default function DashboardPage() {
-  return <div>Dashboard</div>;
+  return <Inicio />;
 }

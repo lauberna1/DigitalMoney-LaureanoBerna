@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "./globals.css";
-import { MainLayout } from "@/layouts/mainLayout/MainLayout";
+import { MainLayout } from "@/layouts/MainLayout/MainLayout";
 import { AuthProvider } from "@/context/AuthContext/AuthContext";
 
 const openSans = Open_Sans({

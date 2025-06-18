@@ -12,6 +12,7 @@ import { loginSchema } from "@/schema/loginSchema";
 import { useState } from "react";
 import { useAuthHook } from "@/hooks/useAuthHook";
 import { useAuth } from "@/context/AuthContext/AuthContext";
+import { toast } from "react-toastify";
 
 export function LoginForm() {
   /* STATES */
@@ -43,9 +44,10 @@ export function LoginForm() {
       try {
         setLoading(true);
         const { JWT } = await loginUser(data as FullStepData);
-        login(JWT);
+        await login(JWT);
       } catch {
         setError(true);
+        toast.error("Error al iniciar sesión");
       } finally {
         setLoading(false);
       }

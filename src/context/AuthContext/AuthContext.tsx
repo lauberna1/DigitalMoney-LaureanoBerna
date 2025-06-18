@@ -1,49 +1,77 @@
 "use client";
-import React, {
-  createContext,
-  useReducer,
-  useContext,
-  ReactNode,
-  useEffect,
-} from "react";
 import Cookies from "js-cookie";
 import { jwtDecode } from "jwt-decode";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useReducer,
+} from "react";
 
-import { AuthState, User } from "./types";
-import { authInitialState, authReducer } from "./AuthReducer";
+import { useAuthHook } from "@/hooks/useAuthHook";
 import { useRouter } from "next/navigation";
+import { authInitialState, authReducer } from "./AuthReducer";
+import { AuthState, DecodedToken } from "@/types/useAuthTypes";
+import { User } from "@/types/globalTypes";
 
 interface AuthContextType extends AuthState {
   login: (token: string) => void;
   logout: () => void;
+  setUser: (user: User) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  /* HOOKS */
   const [state, dispatch] = useReducer(authReducer, authInitialState);
+  const { getUser } = useAuthHook();
   const Router = useRouter();
+
+  /* EFFECTS */
   useEffect(() => {
-    const token = Cookies.get("token");
-    if (token) {
+    const initAuth = async () => {
+      if (state?.user) return;
+
+      const token = Cookies.get("token");
+      if (!token) return;
       try {
-        const decoded = jwtDecode<User>(token);
-        dispatch({ type: "LOGIN", payload: { user: decoded, token } });
+        const decoded = jwtDecode<DecodedToken>(token);
+        const now = Math.floor(Date.now() / 1000);
+        if (decoded.exp < now) {
+          Cookies.remove("token");
+          return;
+        }
+        const { user } = await getUser({ token, userId: decoded.username });
+
+        dispatch({ type: "LOGIN", payload: { user, token } });
       } catch (err) {
-        console.error("Token inválido", err);
+        console.error("Token inválido al inicializar auth", err);
         Cookies.remove("token");
       }
-    }
-  }, []);
+    };
 
-  const login = (token: string) => {
+    initAuth();
+  }, [getUser, state?.user]);
+
+  /* HANDLERS */
+
+  const setUser = (user: User) => {
+    dispatch({ type: "SET_USER", payload: user });
+  };
+
+  const login = async (token: string) => {
     try {
-      const decoded = jwtDecode<User>(token);
+      const decoded = jwtDecode<DecodedToken>(token);
+
       Cookies.set("token", token, { expires: 7 });
-      dispatch({ type: "LOGIN", payload: { user: decoded, token } });
+
+      const { user } = await getUser({ token, userId: decoded.username });
+      dispatch({ type: "LOGIN", payload: { user, token } });
       Router.push("/dashboard");
     } catch (err) {
-      console.error("No se pudo decodificar el token", err);
+      console.error("Error al iniciar sesion", err);
     }
   };
 
@@ -52,9 +80,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     Router.push("/");
     dispatch({ type: "LOGOUT" });
   };
-
   return (
-    <AuthContext.Provider value={{ ...state, login, logout }}>
+    <AuthContext.Provider value={{ ...state, login, logout, setUser }}>
       {children}
     </AuthContext.Provider>
   );

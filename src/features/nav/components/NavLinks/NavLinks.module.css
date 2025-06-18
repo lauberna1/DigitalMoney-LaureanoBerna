@@ -1,0 +1,21 @@
+.link {
+  text-decoration: none;
+  font-size: 15px;
+  color: black;
+  transition: padding-left 0.1s ease-in-out;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.link:hover {
+  padding-left: 5px;
+}
+
+.active {
+  font-weight: 700;
+  font-size: 18px;
+}
+
+.closeSession {
+  opacity: 0.6;
+}

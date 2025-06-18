@@ -1,4 +1,4 @@
-import { AuthAction, AuthState } from "./types";
+import { AuthAction, AuthState } from "@/types/useAuthTypes";
 
 export const authInitialState: AuthState = {
   user: null,
@@ -16,6 +16,11 @@ export function authReducer(state: AuthState, action: AuthAction): AuthState {
       return {
         user: null,
         token: null,
+      };
+    case "SET_USER":
+      return {
+        ...state,
+        user: action.payload,
       };
     default:
       return state;

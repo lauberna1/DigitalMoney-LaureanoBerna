@@ -1,0 +1,20 @@
+.mobilePath {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.arrow {
+  color: rgba(0, 0, 0, 0.5);
+}
+.path {
+  color: var(--color-1);
+  font-weight: 600;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.5);
+}
+
+@media (width >= 768px) {
+  .mobilePath {
+    display: none;
+  }
+}

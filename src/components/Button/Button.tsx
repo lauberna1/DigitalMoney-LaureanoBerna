@@ -4,7 +4,7 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import s from "./Button.module.css";
 import { BounceLoader } from "react-spinners";
 
-/** 
+/**
  * Button component
  * @param {string} text - Text to display inside the button.
  * @param {() => void} onClick - Function to call when the button is clicked.
@@ -15,6 +15,7 @@ import { BounceLoader } from "react-spinners";
  * @param {string} href - URL to link to when the button is clicked.
  * @param {string} type - Type of the button to display.
  * @param {boolean} loading - Whether to display a loading spinner or not.
+ * @param {boolean} disabled - Whether the button is disabled or not.
  */
 
 export function Button({
@@ -27,6 +28,7 @@ export function Button({
   href,
   type = "button",
   loading = false,
+  disabled = false,
   ...params
 }: {
   text: string;
@@ -38,6 +40,7 @@ export function Button({
   href?: string;
   type?: "button" | "submit";
   loading?: boolean;
+  disabled?: boolean;
 }) {
   const classVariant = s[variant];
   const buttonContent = (
@@ -62,8 +65,11 @@ export function Button({
 
   return (
     <button
+      disabled={disabled}
       onClick={onClick}
-      className={`${s.button} ${classVariant} ${s[size]}`}
+      className={`${s.button} ${classVariant} ${s[size]} ${
+        disabled && s.disabled
+      }`}
       style={style}
       type={type}
       {...params}

@@ -1,0 +1,83 @@
+.tarjetasList {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  margin-bottom: 15px;
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(238, 234, 234, 1);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 30px 0;
+  width: 100%;
+  gap: 15px;
+  position: relative;
+}
+
+.dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background-color: var(--color-3);
+}
+
+.delete {
+  position: absolute;
+  right: 0px;
+  background-color: transparent;
+  border: none;
+  font-weight: 600;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+}
+
+.noCards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+}
+
+.delete:hover {
+  color: var(--color-error);
+}
+
+@media (width >= 768px) {
+  .dot {
+    width: 32px;
+    height: 32px;
+  }
+  .cardName {
+    font-size: 16px;
+  }
+  .delete {
+    font-size: 16px;
+  }
+}

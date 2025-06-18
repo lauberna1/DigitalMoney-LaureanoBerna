@@ -1,0 +1,16 @@
+.inicio {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+@media (width < 1080px) {
+  .buttons {
+    flex-direction: column;
+  }
+}
