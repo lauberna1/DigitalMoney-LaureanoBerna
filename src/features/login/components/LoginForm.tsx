@@ -1,7 +1,7 @@
 "use client";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { EmailStepData, FullStepData } from "../types/types";
+
 import s from "./LoginForm.module.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
 
@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useAuthHook } from "@/hooks/useAuthHook";
 import { useAuth } from "@/context/AuthContext/AuthContext";
 import { toast } from "react-toastify";
+import { EmailStepData, FullStepData } from "@/types/loginTypes";
 
 export function LoginForm() {
   /* STATES */
