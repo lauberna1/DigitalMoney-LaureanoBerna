@@ -17,7 +17,7 @@ export const Menu = ({
   return (
     <div className={` ${s.menu} ${open ? s.open : ""}`}>
       <header className={s.header}>
-        <IoClose className={s.icon} onClick={handleOpenClose} />
+        <IoClose role="button" className={s.icon} onClick={handleOpenClose} />
         <Text
           variant="h6"
           className={s.name}

@@ -15,12 +15,6 @@
   width: 86px;
 }
 
-
-
-
-
-
-
 @media (width <= 640px) {
   .logo {
     width: 60px;

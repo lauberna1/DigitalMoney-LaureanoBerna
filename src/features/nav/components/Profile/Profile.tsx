@@ -23,7 +23,7 @@ export function Profile({ handleOpenClose }: { handleOpenClose: () => void }) {
         </Text>
       </div>
 
-      <IoMenu className={s.icon} onClick={handleOpenClose} />
+      <IoMenu role="button" className={s.icon} onClick={handleOpenClose} />
     </div>
   );
 }

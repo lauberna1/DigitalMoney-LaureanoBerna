@@ -1,20 +1,21 @@
 "use client";
-import { Input } from "@/components/Input/Input";
-import s from "./Form.module.css";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import Cards from "react-credit-cards-2";
 import { Button } from "@/components/Button/Button";
-import { addCardSchema } from "@/schema/addCardSchema";
-import { useState } from "react";
-import { toast } from "react-toastify";
-import { CardData } from "@/types/globalTypes";
+import { Input } from "@/components/Input/Input";
 import { useDashboard } from "@/context/DashboardContext/DashboardContext";
+import { addCardSchema } from "@/schema/addCardSchema";
+import { CardData } from "@/types/globalTypes";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import Cards from "react-credit-cards-2";
 import "react-credit-cards-2/dist/es/styles-compiled.css";
+import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import s from "./Form.module.css";
 export function Form() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+  const { cards } = useDashboard();
   const [focused, setFocused] = useState<
     "number" | "name" | "expiry" | "cvc" | ""
   >("");
@@ -33,6 +34,10 @@ export function Form() {
 
   const onSubmit = async (data: CardData) => {
     try {
+      if (cards?.length === 10) {
+        toast.error("No puedes agregar más de 10 tarjetas");
+        return;
+      }
       setLoading(true);
       await addCardData(data);
       toast.success("Tarjeta guardada");
@@ -43,6 +48,12 @@ export function Form() {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    if (cards?.length === 10) {
+      router.push("/dashboard/tarjetas");
+    }
+  }, []);
 
   return (
     <div className={s.container}>
@@ -73,7 +84,7 @@ export function Form() {
         />
 
         <Input
-          className={s.input}
+          className={`${s.input} ${s.last}`}
           placeholder="Fecha de vencimiento*"
           {...register("expiration")}
           onFocus={() => setFocused("expiry")}
@@ -82,20 +93,22 @@ export function Form() {
         />
 
         <Input
-          className={s.input}
+          className={`${s.input} ${s.last}`}
           placeholder="Código de seguridad*"
           {...register("cvv")}
           onFocus={() => setFocused("cvc")}
           maxLength={4}
           error={errors.cvv?.message}
         />
-        <Button
-          type="submit"
-          text="Guardar"
-          variant={isValid ? "primary" : "tertiary"}
-          loading={loading}
-          disabled={!isValid}
-        />
+        <div className={s.button}>
+          <Button
+            type="submit"
+            text="Guardar"
+            variant={isValid ? "primary" : "tertiary"}
+            loading={loading}
+            disabled={!isValid}
+          />
+        </div>
       </form>
     </div>
   );
