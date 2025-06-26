@@ -45,7 +45,10 @@ export function useDashboardHook() {
 
         if (!res.ok) throw new Error("Error al obtener las transacciones");
         const transactions: Transaction[] = await res.json();
-        return { transactions };
+        const sorted = transactions.sort(
+          (a, b) => new Date(b.dated).getTime() - new Date(a.dated).getTime()
+        );
+        return { transactions: sorted };
       } catch {
         throw new Error("Error al obtener las transacciones");
       }
@@ -156,7 +159,6 @@ export function useDashboardHook() {
       accountId: number;
     }) => {
       try {
-        console.log(expiration);
         const res = await fetch(
           `https://digitalmoney.digitalhouse.com/api/accounts/${accountId}/cards`,
           {
@@ -184,6 +186,79 @@ export function useDashboardHook() {
     []
   );
 
+  const updateAlias = useCallback(
+    async ({
+      token,
+      accountId,
+      alias,
+    }: {
+      token: string;
+      accountId: number;
+      alias: string;
+    }) => {
+      try {
+        const res = await fetch(
+          `https://digitalmoney.digitalhouse.com/api/accounts/${accountId}`,
+          {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${token}`,
+            },
+            body: JSON.stringify({
+              alias,
+            }),
+          }
+        );
+
+        if (!res.ok) throw new Error("Error al editar el alias");
+      } catch {
+        throw new Error("Error al editar el alias");
+      }
+    },
+    []
+  );
+
+  const depositMoney = useCallback(
+    async ({
+      token,
+      accountId,
+      amount,
+      dated,
+    }: {
+      token: string;
+      accountId: number;
+      amount: number;
+      dated: string;
+    }) => {
+      try {
+        const res = await fetch(
+          `https://digitalmoney.digitalhouse.com/api/accounts/${accountId}/deposits`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${token}`,
+            },
+            body: JSON.stringify({
+              amount,
+              dated,
+              destination: "Cuenta propia",
+              origin: "Card",
+            }),
+          }
+        );
+
+        if (!res.ok) throw new Error("Error al depositar dinero");
+        const deposit: Transaction = await res.json();
+        return { deposit };
+      } catch {
+        throw new Error("Error al depositar dinero");
+      }
+    },
+    []
+  );
+
   return {
     getAccount,
     getTransactions,
@@ -191,5 +266,7 @@ export function useDashboardHook() {
     getCards,
     deleteCard,
     addCard,
+    updateAlias,
+    depositMoney,
   };
 }

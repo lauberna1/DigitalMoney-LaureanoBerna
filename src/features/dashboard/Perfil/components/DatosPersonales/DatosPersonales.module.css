@@ -28,6 +28,10 @@
   width: 100%;
 }
 
+.valueCont {
+  width: 100%;
+}
+
 .disabled {
   color: rgba(0, 0, 0, 0.3);
 }
@@ -72,5 +76,10 @@
   }
   .subtitle {
     min-width: 200px;
+  }
+
+  .valueCont {
+    display: flex;
+    flex-direction: column;
   }
 }

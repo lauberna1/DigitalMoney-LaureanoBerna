@@ -1,8 +1,10 @@
+"use client";
 import { Button } from "@/components/Button/Button";
-import { Activity } from "./components/Activity/Activity";
+import { MobilePath } from "@/components/MobilePath/MobilePath";
+import { Actividad } from "../Actividad/Actividad";
 import { Balance } from "./components/Balance/Balance";
 import s from "./Inicio.module.css";
-import { MobilePath } from "@/components/MobilePath/MobilePath";
+import { Suspense } from "react";
 export default function Inicio() {
   return (
     <section className={s.inicio}>
@@ -29,7 +31,9 @@ export default function Inicio() {
         />
       </div>
 
-      <Activity />
+      <Suspense>
+        <Actividad isHome={true} />
+      </Suspense>
     </section>
   );
 }

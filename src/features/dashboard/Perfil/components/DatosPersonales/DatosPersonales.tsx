@@ -122,26 +122,30 @@ export function DatosPersonales() {
         <Text variant="md" className={s.subtitle}>
           Nombre y apellido
         </Text>
-        <input
-          type="text"
-          {...register("name")}
-          ref={(e) => {
-            register("name").ref(e);
-            nameRef.current = e;
-          }}
-          disabled={editingField !== "name"}
-          className={`${s.value} ${editingField !== "name" ? s.disabled : ""}`}
-        />
-        <MdEdit
-          role="button"
-          className={s.edit}
-          onClick={() => handleEdit("name")}
-        />
-        {errors.name && (
-          <Text variant="xs" className={s.error}>
-            {errors.name.message}
-          </Text>
-        )}
+        <div className={s.valueCont}>
+          <input
+            type="text"
+            {...register("name")}
+            ref={(e) => {
+              register("name").ref(e);
+              nameRef.current = e;
+            }}
+            disabled={editingField !== "name"}
+            className={`${s.value} ${
+              editingField !== "name" ? s.disabled : ""
+            }`}
+          />
+          <MdEdit
+            role="button"
+            className={s.edit}
+            onClick={() => handleEdit("name")}
+          />
+          {errors.name && (
+            <Text variant="xs" className={s.error}>
+              {errors.name.message}
+            </Text>
+          )}
+        </div>
       </div>
       <span className={s.separator} />
 
@@ -150,26 +154,11 @@ export function DatosPersonales() {
         <Text variant="md" className={s.subtitle}>
           DNI
         </Text>
-        <input
-          type="text"
-          {...register("dni")}
-          ref={(e) => {
-            register("dni").ref(e);
-            dniRef.current = e;
-          }}
-          disabled={editingField !== "dni"}
-          className={`${s.value} ${editingField !== "dni" ? s.disabled : ""}`}
-        />
-        <MdEdit
-          role="button"
-          className={s.edit}
-          onClick={() => handleEdit("dni")}
-        />
-        {errors.dni && (
-          <Text variant="xs" className={s.error}>
-            {errors.dni.message}
+        <div className={s.valueCont}>
+          <Text variant="md" className={`${s.value} ${s.disabled}`}>
+            {user?.dni || "-"}
           </Text>
-        )}
+        </div>
       </div>
       <span className={s.separator} />
 
@@ -178,26 +167,30 @@ export function DatosPersonales() {
         <Text variant="md" className={s.subtitle}>
           Teléfono
         </Text>
-        <input
-          type="text"
-          {...register("phone")}
-          ref={(e) => {
-            register("phone").ref(e);
-            phoneRef.current = e;
-          }}
-          disabled={editingField !== "phone"}
-          className={`${s.value} ${editingField !== "phone" ? s.disabled : ""}`}
-        />
-        <MdEdit
-          role="button"
-          className={s.edit}
-          onClick={() => handleEdit("phone")}
-        />
-        {errors.phone && (
-          <Text variant="xs" className={s.error}>
-            {errors.phone.message}
-          </Text>
-        )}
+        <div className={s.valueCont}>
+          <input
+            type="text"
+            {...register("phone")}
+            ref={(e) => {
+              register("phone").ref(e);
+              phoneRef.current = e;
+            }}
+            disabled={editingField !== "phone"}
+            className={`${s.value} ${
+              editingField !== "phone" ? s.disabled : ""
+            }`}
+          />
+          <MdEdit
+            role="button"
+            className={s.edit}
+            onClick={() => handleEdit("phone")}
+          />
+          {errors.phone && (
+            <Text variant="xs" className={s.error}>
+              {errors.phone.message}
+            </Text>
+          )}
+        </div>
       </div>
       <span className={s.separator} />
 

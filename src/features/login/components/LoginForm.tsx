@@ -2,18 +2,17 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 
-import s from "./LoginForm.module.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
+import s from "./LoginForm.module.css";
 
 import { Button } from "@/components/Button/Button";
 import { Input } from "@/components/Input/Input";
 import { Text } from "@/components/Text/Text";
-import { loginSchema } from "@/schema/loginSchema";
-import { useState } from "react";
-import { useAuthHook } from "@/hooks/useAuthHook";
 import { useAuth } from "@/context/AuthContext/AuthContext";
-import { toast } from "react-toastify";
+import { useAuthHook } from "@/hooks/useAuthHook";
+import { loginSchema } from "@/schema/loginSchema";
 import { EmailStepData, FullStepData } from "@/types/loginTypes";
+import { useState } from "react";
 
 export function LoginForm() {
   /* STATES */
@@ -48,7 +47,6 @@ export function LoginForm() {
         await login(JWT);
       } catch {
         setError(true);
-        toast.error("Error al iniciar sesión");
       } finally {
         setLoading(false);
       }

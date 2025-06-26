@@ -74,6 +74,7 @@ export default function RegisterForm() {
           placeholder="DNI*"
           {...register("dni")}
           error={errors.dni?.message}
+          type="number"
         />
         <Input
           placeholder="Correo electrónico*"

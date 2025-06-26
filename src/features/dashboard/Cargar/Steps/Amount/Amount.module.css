@@ -1,0 +1,38 @@
+.container {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  background-color: var(--color-1);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.title {
+  color: var(--color-3);
+}
+
+.subtitle {
+  color: black;
+}
+
+.button {
+  display: none;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+@media (width >= 768px) {
+  .title {
+    font-size: 24px !important;
+  }
+  .container {
+    padding: 40px 50px;
+    gap: 30px;
+  }
+  .button {
+    display: flex;
+  }
+}

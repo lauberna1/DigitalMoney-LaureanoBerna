@@ -6,7 +6,7 @@ export function Search({
   value,
   onKeyDown,
 }: {
-  onChange: (value: string) => void;
+  onChange: (value: string) => void | null;
   value: string;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }) {

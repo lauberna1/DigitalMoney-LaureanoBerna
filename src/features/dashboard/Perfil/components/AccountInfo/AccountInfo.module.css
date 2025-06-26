@@ -29,6 +29,7 @@
   gap: 2px;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 100%;
 }
 
 .subtitle {
@@ -43,7 +44,7 @@
 .copy {
   font-size: 32px;
   color: var(--color-3);
-  cursor: pointer;
+  cursor: copy;
 }
 
 .separator {
@@ -56,6 +57,53 @@
 .disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+.inputCont {
+  width: 100%;
+}
+
+.input {
+  all: unset;
+  width: 100%;
+}
+
+.edit,
+.cancel {
+  cursor: pointer;
+  font-size: 30px;
+  color: var(--color-3);
+}
+
+.editCont {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cancel {
+  color: var(--color-error);
+}
+
+.saveButton {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.saveButton:hover {
+  background-color: #005bd1;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
 }
 
 @media (width<768px) {

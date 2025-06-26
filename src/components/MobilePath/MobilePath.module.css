@@ -3,6 +3,8 @@
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
+  cursor: pointer;
+  width: fit-content;
 }
 .arrow {
   color: rgba(0, 0, 0, 0.5);

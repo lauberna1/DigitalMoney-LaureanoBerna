@@ -1,0 +1,40 @@
+.cargar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.button {
+  display: none;
+  justify-content: flex-end;
+}
+.button button,
+.buttonInicio button {
+  width: 165px !important;
+  height: 50px !important;
+  box-shadow: var(--shadow);
+}
+
+.buttonInicio a {
+  width: 165px !important;
+  height: 50px !important;
+  box-shadow: var(--shadow);
+}
+
+.buttonInicio {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.buttonInicio button {
+  background-color: rgba(206, 206, 206, 1);
+}
+
+.buttonInicio a {
+  background-color: rgba(206, 206, 206, 1);
+}
+@media (width < 768px) {
+  .button {
+    display: flex;
+  }
+}

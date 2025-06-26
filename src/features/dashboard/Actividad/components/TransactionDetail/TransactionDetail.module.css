@@ -1,0 +1,91 @@
+.transactionDetail {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  padding: 30px;
+  background-color: var(--color-1);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(206, 206, 206, 1);
+}
+
+.date2{
+  display: none;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--color-3);
+}
+.icon {
+  font-size: 30px;
+}
+
+.date,
+.date2 {
+  color: white;
+  opacity: 0.6;
+}
+
+.transferencia {
+  color: white;
+}
+
+.amount {
+  color: var(--color-3);
+  font-weight: 700;
+}
+
+.infoTitle {
+  color: white;
+  font-weight: 400;
+  font-size: 12px;
+  opacity: 0.8;
+}
+.infoValue {
+  color: var(--color-3);
+  font-size: 16px;
+}
+
+.transferenciaInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+@media (width >= 768px) {
+  .destination {
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .date {
+    display: none;
+  }
+  .date2{
+    display: block;
+  }
+  .buttons{
+    justify-content: flex-end;
+  }
+}

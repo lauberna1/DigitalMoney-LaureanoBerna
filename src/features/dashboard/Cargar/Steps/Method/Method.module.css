@@ -1,0 +1,49 @@
+.methodsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.method {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 120px;
+  padding: 0 30px;
+  background-color: var(--color-1);
+  box-sizing: border-box;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+
+.method:hover {
+  transform: scale(0.98);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--color-3);
+
+  width: fit-content;
+  max-width: 65%;
+}
+
+.icon {
+  font-size: 30px;
+  width: 40px;
+}
+
+.arrow {
+  color: var(--color-3);
+  font-size: 30px;
+}
+
+@media (width >= 768px) {
+  .method {
+    height: 150px;
+  }
+}

@@ -23,6 +23,14 @@ interface DashboardContextType extends DashboardState {
   getCardsData: () => void;
   deleteCardData: ({ cardId }: { cardId: number }) => void;
   addCardData: ({ number, fullName, expiration, cvv }: CardData) => void;
+  updateAliasData: ({ alias }: { alias: string }) => void;
+  depositMoneyData: ({
+    amount,
+    dated,
+  }: {
+    amount: number;
+    dated: string;
+  }) => Promise<{ deposit: Transaction } | undefined>;
 
   dispatch: React.Dispatch<DashboardAction>;
 }
@@ -34,8 +42,15 @@ const DashboardContext = createContext<DashboardContextType | undefined>(
 export const DashboardProvider = ({ children }: { children: ReactNode }) => {
   const [state, dispatch] = useReducer(dashboardReducer, dashboardInitialState);
   const { token, user } = useAuth();
-  const { getAccount, getTransactions, getCards, deleteCard, addCard } =
-    useDashboardHook();
+  const {
+    getAccount,
+    getTransactions,
+    getCards,
+    deleteCard,
+    addCard,
+    updateAlias,
+    depositMoney,
+  } = useDashboardHook();
 
   /* REDUCER FUNCTIONS */
   const setAccount = useCallback(
@@ -102,9 +117,8 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
           cardId: cardId,
           accountId: state.account.id,
         });
-        if (state.cards) {
-          setCards(state.cards.filter((card) => card.id !== cardId));
-        }
+
+        setCards((state.cards || []).filter((card) => card.id !== cardId));
       } catch (err) {
         console.error("Error al eliminar la tarjeta", err);
       }
@@ -124,14 +138,55 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
           expiration,
           cvv,
         });
-        if (state.cards) {
-          setCards([...state.cards, card]);
-        }
+
+        setCards([...(state.cards || []), card]);
       } catch (err) {
         console.error("Error al agregar la tarjeta", err);
       }
     },
     [addCard, token, state?.account?.id, setCards, state?.cards]
+  );
+
+  const updateAliasData = useCallback(
+    async ({ alias }: { alias: string }) => {
+      if (!token || !state?.account?.id) return;
+      try {
+        await updateAlias({ token, accountId: state.account.id, alias });
+        if (state.account) {
+          setAccount({ ...state.account, alias });
+        }
+      } catch (err) {
+        console.error("Error al actualizar el alias", err);
+      }
+    },
+    [updateAlias, token, setAccount, state.account]
+  );
+
+  const depositMoneyData = useCallback(
+    async ({ amount, dated }: { amount: number; dated: string }) => {
+      if (!token || !state?.account?.id) return;
+      try {
+        const { deposit } = await depositMoney({
+          token,
+          accountId: state.account.id,
+          amount,
+          dated,
+        });
+
+        getTransactionsData();
+        getAccountData();
+        return { deposit };
+      } catch (err) {
+        console.error("Error al depositar dinero", err);
+      }
+    },
+    [
+      token,
+      state?.account?.id,
+      depositMoney,
+      getTransactionsData,
+      getAccountData,
+    ]
   );
 
   /* EFFECTS */
@@ -146,7 +201,6 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
 
     if (user) init();
   }, [getAccountData, getTransactionsData, getCardsData, user]);
-  console.log(state);
 
   return (
     <DashboardContext.Provider
@@ -161,6 +215,8 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
         setCards,
         deleteCardData,
         addCardData,
+        updateAliasData,
+        depositMoneyData,
       }}
     >
       {children}

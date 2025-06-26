@@ -1,0 +1,157 @@
+.container {
+  width: 100%;
+  padding: 20px;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow);
+}
+
+.separator {
+  width: 100%;
+  height: 1px;
+  background-color: rgba(238, 234, 234, 1);
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.item:hover .title {
+  font-weight: 700;
+}
+
+.dot {
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  background-color: var(--color-3);
+  margin-right: 10px;
+}
+
+.title {
+  flex: 1;
+  padding-right: 20px;
+}
+
+.amountContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.amount {
+  color: rgba(58, 57, 62, 1);
+}
+
+.date {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.moreContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.more {
+  font-weight: 700;
+  color: var(--color-1);
+}
+
+.arrow {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.loader,
+.noTransactions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 200px;
+}
+
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.pageButton {
+  background: transparent;
+  border-radius: 6px;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+  border: none;
+}
+
+.pageButton:hover {
+  background-color: var(--color-3);
+  color: black;
+}
+
+.active {
+  background-color: #222;
+  color: white;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filterButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  gap: 10px;
+  background-color: transparent;
+}
+
+.filterButton:focus {
+  outline: none;
+}
+
+.icon {
+  font-size: 16px;
+}
+
+@media (width >= 768px) {
+  .title {
+    font-size: 16px;
+  }
+  .amount {
+    font-size: 16px;
+  }
+  .more {
+    font-size: 16px;
+  }
+  .arrow {
+    font-size: 20px;
+  }
+  .filterButton {
+    display: none;
+  }
+}

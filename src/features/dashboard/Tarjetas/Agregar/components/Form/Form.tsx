@@ -53,7 +53,7 @@ export function Form() {
     if (cards?.length === 10) {
       router.push("/dashboard/tarjetas");
     }
-  }, []);
+  }, [cards?.length, router]);
 
   return (
     <div className={s.container}>
