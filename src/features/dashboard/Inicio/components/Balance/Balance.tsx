@@ -22,7 +22,7 @@ export function Balance() {
         <Text variant="xl" className={s.amountNumber}>
           ${" "}
           {account?.available_amount === undefined
-            ? "00,00"
+            ? "0,00"
             : account.available_amount.toLocaleString("es-AR", {
                 minimumFractionDigits: 2,
                 maximumFractionDigits: 2,
