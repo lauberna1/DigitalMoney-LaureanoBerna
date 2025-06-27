@@ -1,4 +1,4 @@
-import { Footer } from "@/components/Footer/Footer";
+import { Footer } from "@/components/footer/Footer";
 import s from "./MainLayout.module.css";
 import { Nav } from "@/components/Nav/components/Nav/Nav";
 import { Bounce, ToastContainer } from "react-toastify";

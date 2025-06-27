@@ -3,7 +3,7 @@ import { Open_Sans } from "next/font/google";
 import "./globals.css";
 
 import { AuthProvider } from "@/context/AuthContext/AuthContext";
-import { MainLayout } from "@/layouts/MainLayout/MainLayout";
+import { MainLayout } from "@/layouts/mainLayout/MainLayout";
 
 const openSans = Open_Sans({
   variable: "--font-open-sans",
