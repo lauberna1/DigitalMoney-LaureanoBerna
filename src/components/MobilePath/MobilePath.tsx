@@ -3,6 +3,13 @@ import { Text } from "@/components/Text/Text";
 import { FaArrowRightLong } from "react-icons/fa6";
 import s from "./MobilePath.module.css";
 import { useRouter } from "next/navigation";
+
+/**
+ * MobilePath component
+ * @param {string} path - Path to redirect to.
+ * @param {() => void} onClick - Function to call when the path is clicked.
+ */
+
 export function MobilePath({
   path,
   onClick,
