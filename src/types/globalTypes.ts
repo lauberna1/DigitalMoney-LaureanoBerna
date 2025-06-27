@@ -41,3 +41,10 @@ export interface CardData {
   expiration: string;
   cvv: string;
 }
+
+export interface Service {
+  id: number;
+  name: string;
+  date: string;
+  invoice_value?: number;
+}

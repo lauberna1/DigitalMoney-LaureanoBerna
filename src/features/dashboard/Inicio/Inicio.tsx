@@ -26,7 +26,7 @@ export default function Inicio() {
           }}
           text="Pago de servicios"
           variant="primary"
-          href="/dashboard/pagar"
+          href="/dashboard/servicios"
           size="big"
         />
       </div>

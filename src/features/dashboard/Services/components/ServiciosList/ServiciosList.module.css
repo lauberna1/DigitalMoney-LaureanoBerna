@@ -25,15 +25,12 @@
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 10px;
+  gap: 20px;
+  cursor: pointer;
 }
 
-.dot {
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
-  background-color: var(--color-3);
-  margin-right: 10px;
+.item:hover .title {
+  font-weight: 700;
 }
 
 .title {
@@ -41,39 +38,12 @@
   padding-right: 20px;
 }
 
-.amountContainer {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  align-items: flex-end;
-}
-
-.amount {
+.select {
   color: rgba(58, 57, 62, 1);
 }
 
-.date {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.moreContainer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  cursor: pointer;
-}
-
-.more {
-  font-weight: 700;
-  color: var(--color-1);
-}
-
-.arrow {
-  color: rgba(0, 0, 0, 0.5);
-}
-
 .loader,
-.noTransactions {
+.noServices {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,17 +51,11 @@
   height: 200px;
 }
 
-@media (width >= 640px) {
+@media (width >= 768px) {
   .title {
     font-size: 16px;
   }
-  .amount {
+  .select {
     font-size: 16px;
-  }
-  .more {
-    font-size: 16px;
-  }
-  .arrow {
-    font-size: 20px;
   }
 }

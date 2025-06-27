@@ -12,7 +12,7 @@ export const NavLinks = ({ onClick = () => {} }: { onClick?: () => void }) => {
     { href: "/dashboard/actividad", label: "Actividad" },
     { href: "/dashboard/perfil", label: "Tu perfil" },
     { href: "/dashboard/cargar", label: "Cargar dinero" },
-    { href: "/dashboard/pagar", label: "Pagar servicios" },
+    { href: "/dashboard/servicios", label: "Pagar servicios" },
     { href: "/dashboard/tarjetas", label: "Tarjetas" },
   ];
 

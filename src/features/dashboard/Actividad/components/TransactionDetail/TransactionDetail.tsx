@@ -50,7 +50,7 @@ export function TransactionDetail() {
               Le transferiste a
             </Text>
             <Text variant="xl" className={`${s.infoValue} ${s.destination}`}>
-              {transaction?.destination}
+              {transaction?.description}
             </Text>
           </div>
         )}

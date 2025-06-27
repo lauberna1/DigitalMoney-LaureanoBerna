@@ -1,19 +1,23 @@
 "use client";
 import { Text } from "@/components/Text/Text";
 import { useDashboard } from "@/context/DashboardContext/DashboardContext";
-import React from "react";
+import React, { useState } from "react";
 import { BounceLoader } from "react-spinners";
 import { toast } from "react-toastify";
 import s from "./TarjetasList.module.css";
 export function TarjetasList() {
   const { cards, deleteCardData } = useDashboard();
+  const [loading, setLoading] = useState(false);
 
   const deleteCard = async (cardId: number) => {
     try {
+      setLoading(true);
       await deleteCardData({ cardId });
       toast.success("Tarjeta eliminada");
     } catch {
       toast.error("Error al eliminar la tarjeta");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -45,15 +49,20 @@ export function TarjetasList() {
                   <Text variant="sm" className={s.cardName}>
                     Terminada en {lastFour}
                   </Text>
-
-                  <button
-                    className={s.delete}
-                    onClick={async () => {
-                      await deleteCard(card.id);
-                    }}
-                  >
-                    Eliminar
-                  </button>
+                  {loading ? (
+                    <div className={s.delete}>
+                      <BounceLoader size="20px" />
+                    </div>
+                  ) : (
+                    <button
+                      className={s.delete}
+                      onClick={async () => {
+                        await deleteCard(card.id);
+                      }}
+                    >
+                      Eliminar
+                    </button>
+                  )}
                 </div>
                 <span className={s.separator} />
               </React.Fragment>

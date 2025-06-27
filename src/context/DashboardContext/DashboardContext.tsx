@@ -1,6 +1,12 @@
 "use client";
 import { useDashboardHook } from "@/hooks/useDashboardHook";
-import { Account, Card, CardData, Transaction } from "@/types/globalTypes";
+import {
+  Account,
+  Card,
+  CardData,
+  Service,
+  Transaction,
+} from "@/types/globalTypes";
 import { DashboardAction, DashboardState } from "@/types/useDashboardTypes";
 import {
   createContext,
@@ -31,6 +37,16 @@ interface DashboardContextType extends DashboardState {
     amount: number;
     dated: string;
   }) => Promise<{ deposit: Transaction } | undefined>;
+  getServicesData: () => void;
+  makePaymentData: ({
+    amount,
+    dated,
+    description,
+  }: {
+    amount: number;
+    dated: string;
+    description: string;
+  }) => Promise<{ transaction: Transaction } | undefined>;
 
   dispatch: React.Dispatch<DashboardAction>;
 }
@@ -50,6 +66,8 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
     addCard,
     updateAlias,
     depositMoney,
+    getServices,
+    makePayment,
   } = useDashboardHook();
 
   /* REDUCER FUNCTIONS */
@@ -70,6 +88,13 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
   const setCards = useCallback(
     (cards: Card[]) => {
       dispatch({ type: "SET_CARDS", payload: cards });
+    },
+    [dispatch]
+  );
+
+  const setServices = useCallback(
+    (services: Service[]) => {
+      dispatch({ type: "SET_SERVICES", payload: services });
     },
     [dispatch]
   );
@@ -189,6 +214,52 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
     ]
   );
 
+  const getServicesData = useCallback(async () => {
+    if (!token) return;
+    try {
+      const { services } = await getServices();
+      setServices(services);
+    } catch (err) {
+      console.error("Error al obtener los servicios", err);
+    }
+  }, [getServices, setServices, token]);
+
+  const makePaymentData = useCallback(
+    async ({
+      amount,
+      dated,
+      description,
+    }: {
+      amount: number;
+      dated: string;
+      description: string;
+    }) => {
+      if (!token || !state?.account?.id) return;
+      try {
+        const { transaction } = await makePayment(
+          state.account.id.toString(),
+          token,
+          amount,
+          dated,
+          description
+        );
+
+        getTransactionsData();
+        getAccountData();
+        return { transaction };
+      } catch (err) {
+        console.error("Error al realizar el pago", err);
+      }
+    },
+    [
+      makePayment,
+      token,
+      state?.account?.id,
+      getTransactionsData,
+      getAccountData,
+    ]
+  );
+
   /* EFFECTS */
   useEffect(() => {
     const init = async () => {
@@ -196,11 +267,18 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
         getAccountData(),
         getTransactionsData(),
         getCardsData(),
+        getServicesData(),
       ]);
     };
 
     if (user) init();
-  }, [getAccountData, getTransactionsData, getCardsData, user]);
+  }, [
+    getAccountData,
+    getTransactionsData,
+    getCardsData,
+    user,
+    getServicesData,
+  ]);
 
   return (
     <DashboardContext.Provider
@@ -217,6 +295,8 @@ export const DashboardProvider = ({ children }: { children: ReactNode }) => {
         addCardData,
         updateAliasData,
         depositMoneyData,
+        getServicesData,
+        makePaymentData,
       }}
     >
       {children}

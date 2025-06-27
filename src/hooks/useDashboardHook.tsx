@@ -2,6 +2,7 @@ import {
   Account,
   Card,
   CardData,
+  Service,
   Transaction,
   User,
 } from "@/types/globalTypes";
@@ -259,6 +260,78 @@ export function useDashboardHook() {
     []
   );
 
+  const getServices = useCallback(async () => {
+    try {
+      const res = await fetch(`https://digitalmoney.digitalhouse.com/service`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!res.ok) throw new Error("Error al obtener los servicios");
+      const services: Service[] = await res.json();
+      return { services };
+    } catch {
+      throw new Error("Error al obtener los servicios");
+    }
+  }, []);
+
+  const getService = useCallback(async (id: string) => {
+    try {
+      const res = await fetch(
+        `https://digitalmoney.digitalhouse.com/service/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!res.ok) throw new Error("Error al obtene el servicios");
+      const service: Service = await res.json();
+      return { service };
+    } catch {
+      throw new Error("Error al obtener el servicio");
+    }
+  }, []);
+
+  const makePayment = useCallback(
+    async (
+      id: string,
+      token: string,
+      amount: number,
+      dated: string,
+      description: string
+    ) => {
+      try {
+        const res = await fetch(
+          `https://digitalmoney.digitalhouse.com/api/accounts/${id}/transactions`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${token}`,
+            },
+            body: JSON.stringify({
+              amount,
+              dated,
+              description,
+            }),
+          }
+        );
+
+        if (!res.ok) throw new Error("Error al realizar el pago");
+        const transaction: Transaction = await res.json();
+        return { transaction };
+      } catch {
+        throw new Error("Error al realizar el pago");
+      }
+    },
+    []
+  );
+
   return {
     getAccount,
     getTransactions,
@@ -268,5 +341,8 @@ export function useDashboardHook() {
     addCard,
     updateAlias,
     depositMoney,
+    getServices,
+    getService,
+    makePayment,
   };
 }

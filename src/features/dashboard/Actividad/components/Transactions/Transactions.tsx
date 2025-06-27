@@ -29,16 +29,18 @@ export function Transactions({
     <div className={s.container}>
       <div className={s.header}>
         <Text variant="h6">Tu actividad</Text>
-        <button
-          className={s.filterButton}
-          onClick={(e) => {
-            e.stopPropagation();
-            openFilters();
-          }}
-        >
-          Filtrar
-          <VscSettings className={s.icon} />
-        </button>
+        {!isHome && (
+          <button
+            className={s.filterButton}
+            onClick={(e) => {
+              e.stopPropagation();
+              openFilters();
+            }}
+          >
+            Filtrar
+            <VscSettings className={s.icon} />
+          </button>
+        )}
       </div>
       <span className={s.separator} />
       <div className={s.content}>
@@ -55,7 +57,7 @@ export function Transactions({
             (a, b) => new Date(b.dated).getTime() - new Date(a.dated).getTime()
           )
           ?.slice(0, 10)
-          ?.map(({ id, amount, dated, type }) => (
+          ?.map(({ id, amount, dated, type, description }) => (
             <React.Fragment key={id}>
               <div
                 className={s.item}
@@ -63,16 +65,32 @@ export function Transactions({
               >
                 <span className={s.dot} />
                 <Text variant="sm" className={s.title}>
-                  {activityTypes[type as keyof typeof activityTypes]}
+                  {type === "Transaction"
+                    ? `${activityTypes[type]} ${description}`
+                    : activityTypes[type as keyof typeof activityTypes]}
                 </Text>
                 <div className={s.amountContainer}>
                   <Text variant="sm" className={s.amount}>
                     $ {amount}
                   </Text>
                   <Text variant="xs" className={s.date}>
-                    {new Intl.DateTimeFormat("es-ES", {
-                      weekday: "long",
-                    }).format(new Date(dated))}
+                    {(() => {
+                      const date = new Date(dated);
+                      const now = new Date();
+                      const startOfWeek = new Date(now);
+                      startOfWeek.setDate(now.getDate() - now.getDay());
+
+                      if (date >= startOfWeek) {
+                        return new Intl.DateTimeFormat("es-ES", {
+                          weekday: "long",
+                        }).format(date);
+                      } else {
+                        return new Intl.DateTimeFormat("es-ES", {
+                          day: "numeric",
+                          month: "short",
+                        }).format(date);
+                      }
+                    })()}
                   </Text>
                 </div>
               </div>

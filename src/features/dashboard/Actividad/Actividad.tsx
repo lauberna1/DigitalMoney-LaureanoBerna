@@ -8,7 +8,7 @@ import { Transactions } from "./components/Transactions/Transactions";
 
 export const activityTypes = {
   Deposit: "Depositaste dinero",
-  Transaction: "Transaccion",
+  Transaction: "Pagaste a",
   Transfer: "Transferencia",
 };
 

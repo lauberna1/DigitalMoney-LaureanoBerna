@@ -5,10 +5,12 @@ export function Search({
   onChange,
   value,
   onKeyDown,
+  placeholder,
 }: {
   onChange: (value: string) => void | null;
   value: string;
   onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+  placeholder?: string;
 }) {
   return (
     <div className={s.search}>
@@ -16,7 +18,7 @@ export function Search({
       <input
         onKeyDown={onKeyDown}
         type="text"
-        placeholder="Buscar en tu actividad"
+        placeholder={placeholder ? placeholder : "Buscar en tu actividad"}
         className={s.input}
         onChange={(e) => onChange(e.target.value)}
         value={value}
