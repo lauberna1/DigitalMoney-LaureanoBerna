@@ -8,8 +8,6 @@
 >
 > Esto forzará la instalación ignorando los errores de compatibilidad de versiones.
 
-# Nro de cuenta incorrecto para ver error 00000000000, para pasar normal utilizar cualquier otro
-
 # 💰 Digital Money
 
 **Digital Money** es una aplicación web desarrollada como proyecto final del curso de desarrollo frontend. Su objetivo es simular una plataforma de gestión financiera personal, permitiendo realizar operaciones como pago de servicios, carga de dinero, y gestión de tarjetas, todo con una experiencia fluida y adaptada a dispositivos desktop, tablet y mobile.
