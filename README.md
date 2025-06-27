@@ -1,6 +1,6 @@
 # 💰 Digital Money
 
-**Digital Money** es una aplicación web desarrollada como proyecto final del curso de desarrollo frontend. Su objetivo es simular una plataforma de gestión financiera personal, permitiendo realizar operaciones como transferencias, pago de servicios, carga de dinero, y gestión de tarjetas, todo con una experiencia fluida y adaptada a dispositivos desktop, tablet y mobile.
+**Digital Money** es una aplicación web desarrollada como proyecto final del curso de desarrollo frontend. Su objetivo es simular una plataforma de gestión financiera personal, permitiendo realizar operaciones como pago de servicios, carga de dinero, y gestión de tarjetas, todo con una experiencia fluida y adaptada a dispositivos desktop, tablet y mobile.
 
 ---
 
