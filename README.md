@@ -63,6 +63,12 @@ npm run dev
 
 ---
 
+## 🔧 Casos de prueba manual
+
+### ❌ Pagar servicio con cuenta incorrecta
+
+Para probar el caso en el que el pago de un servicio falla debido a una cuenta incorrecta, utilizar el siguiente número de cuenta durante la prueba:
+
 ## 📐 Funcionalidades por Sprint
 
 ### 🟡 Sprint I: Inicio, registro y acceso
