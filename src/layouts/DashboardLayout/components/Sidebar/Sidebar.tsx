@@ -1,4 +1,4 @@
-import { NavLinks } from "@/features/nav/components/NavLinks/NavLinks";
+import { NavLinks } from "@/components/Nav/components/NavLinks/NavLinks";
 import s from "./Sidebar.module.css";
 export default function Sidebar() {
   return (

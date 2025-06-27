@@ -1,36 +1,145 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💰 Digital Money
 
-## Getting Started
+**Digital Money** es una aplicación web desarrollada como proyecto final del curso de desarrollo frontend. Su objetivo es simular una plataforma de gestión financiera personal, permitiendo realizar operaciones como transferencias, pago de servicios, carga de dinero, y gestión de tarjetas, todo con una experiencia fluida y adaptada a dispositivos desktop, tablet y mobile.
 
-First, run the development server:
+---
+
+## 🚀 Tecnologías utilizadas
+
+- **Next.js 15.3.3**
+- **React 19**
+- **TypeScript 5**
+- **React Hook Form** + **Yup** (validaciones)
+- **React Icons**
+- **React Toastify** (notificaciones)
+- **React Spinners** (loaders)
+- **JS-Cookie** y **jwt-decode** (manejo de sesiones)
+
+> Usamos **npm** como gestor de paquetes.
+
+---
+
+## 🛠️ Instalación
+
+1. Cloná el repositorio:
+
+```bash
+git clone https://github.com/tuusuario/digital-money.git
+cd digital-money
+```
+
+2. Instalá las dependencias:
+
+```bash
+npm install
+```
+
+3. Ejecutá el entorno de desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📦 Scripts disponibles
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Comando         | Descripción                     |
+| --------------- | ------------------------------- |
+| `npm run dev`   | Corre el servidor de desarrollo |
+| `npm run build` | Compila la app para producción  |
+| `npm start`     | Corre la versión compilada      |
+| `npm run lint`  | Ejecuta análisis de ESLint      |
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📐 Funcionalidades por Sprint
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 🟡 Sprint I: Inicio, registro y acceso
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Autenticación con validaciones.
+- Registro con redirección a login.
+- Gestión de sesión (token + cierre correcto).
+- Mensajes de error claros.
 
-## Deploy on Vercel
+### 🟡 Sprint II: Dashboard, Mi Perfil y Tarjetas
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+#### Dashboard
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Visualización de resumen en ARS.
+- Sidebar visible en todo momento.
+- Lista de últimas 10 transacciones.
+- Acceso directo a "Mi actividad".
+
+#### Mi Perfil
+
+- Edición de datos personales y alias.
+- Alias formateado (X.X.X).
+- Copia de CVU y alias.
+- Contraseña oculta.
+
+#### Gestión de Medios de Pago
+
+- Alta de tarjeta (máximo 10).
+- Detección por primeros dígitos.
+- Últimos 4 dígitos visibles.
+- Mensaje al no tener tarjetas.
+
+### 🟡 Sprint III: Ingreso de Dinero y Mi Actividad
+
+#### Ingreso de dinero
+
+- Selección de medio adherido.
+- Comprobante post-carga.
+- Copia rápida de CVU y alias.
+
+#### Mi Actividad
+
+- Filtros por periodo y tipo (ingreso/egreso).
+- Buscador por palabras claves.
+- Paginado y orden cronológico.
+- Visualización del detalle y resumen de cada transacción.
+
+### 🟡 Sprint IV: Pago de Servicios
+
+- Listado de servicios sin pagar.
+- Validación del número de cuenta.
+- Redirección a selección de medio si hay facturas.
+- Mensajes claros de error y éxito.
+- Resumen final del pago.
+
+---
+
+## 📁 Estructura general
+
+```
+src/
+├── app/
+├── components/
+│   ├── Button/
+│   ├── Footer/
+│   ├── Input/
+│   ├── MobilePath/
+│   ├── Nav/
+│   ├── Text/
+├── features/
+│   ├── dashboard/
+│   ├── login/
+│   ├── register/
+├── context/
+│   ├── AuthContext/
+│   ├── DashboardContext/
+├── layouts/
+│   ├── DashboardLayout/
+│   ├── MainLayout/
+├── hooks/
+├── schema/
+├── types/
+├── utils/
+```
+
+---
+
+## 👨‍💻 Autor
+
+Proyecto desarrollado por **Laureano**, como parte del curso de desarrollador frontend.

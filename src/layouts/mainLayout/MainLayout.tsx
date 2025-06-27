@@ -1,6 +1,6 @@
-import { Footer } from "@/components/footer/Footer";
+import { Footer } from "@/components/Footer/Footer";
 import s from "./MainLayout.module.css";
-import { Nav } from "@/features/nav/components/Nav/Nav";
+import { Nav } from "@/components/Nav/components/Nav/Nav";
 import { Bounce, ToastContainer } from "react-toastify";
 
 export function MainLayout({ children }: { children: React.ReactNode }) {
