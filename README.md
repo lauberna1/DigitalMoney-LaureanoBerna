@@ -1,12 +1,14 @@
 > ⚠️ **Alerta de instalación**
 >
-> Si tenés problemas al correr `npm install` por conflictos de dependencias (`react-credit-cards-2` y `React 19`), usá el siguiente comando:
+> Si tenés problemas al correr `npm install` por conflictos de dependencias (`react-credit-cards-2` y `React`), usá el siguiente comando:
 >
 > ```bash
 > npm install --force
 > ```
 >
 > Esto forzará la instalación ignorando los errores de compatibilidad de versiones.
+
+# Nro de cuenta incorrecto para ver error 00000000000, para pasar normal utilizar cualquier otro
 
 # 💰 Digital Money
 
