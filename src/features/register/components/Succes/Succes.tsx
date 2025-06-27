@@ -8,7 +8,13 @@ export function Succes() {
       <Text variant="h1" className={s.title}>
         Registro Exitoso
       </Text>
-      <Image alt="succes" src="/images/Succes.png" className={s.image} />
+      <Image
+        width={100}
+        height={100}
+        alt="succes"
+        src="/images/Succes.png"
+        className={s.image}
+      />
       <Button text="Continuar" variant="primary" href="/login" />
     </div>
   );

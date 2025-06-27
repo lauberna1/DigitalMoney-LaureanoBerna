@@ -25,6 +25,7 @@ export function Transactions({
   loading: boolean;
 }) {
   const router = useRouter();
+
   return (
     <div className={s.container}>
       <div className={s.header}>
@@ -49,7 +50,7 @@ export function Transactions({
             <BounceLoader size="50px" />
           </div>
         )}
-        {!transactions && (
+        {transactions?.length == 0 && (
           <div className={s.noTransactions}>No tienes transacciones</div>
         )}
         {transactions

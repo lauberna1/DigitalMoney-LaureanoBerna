@@ -69,6 +69,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
       const { user } = await getUser({ token, userId: decoded.username });
       dispatch({ type: "LOGIN", payload: { user, token } });
+      console.log("router");
       Router.push("/dashboard");
     } catch (err) {
       console.error("Error al iniciar sesion", err);
