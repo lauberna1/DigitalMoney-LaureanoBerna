@@ -60,14 +60,10 @@ export function useActividadLogic(isHome: boolean) {
         let searchString = "";
 
         if (t.type === "Deposit") {
-          // Para Deposit busca "Depositaste dinero"
           searchString = "Depositaste dinero";
         } else if (t.type === "Transaction") {
-          // Para Transaction busca "Pagaste a [nombre]"
-          // Supongo que el nombre está en t.description, cambia si no es así
           searchString = `Pagaste a ${t.description || ""}`;
         } else {
-          // Para otros tipos solo el texto fijo
           searchString =
             activityTypes[t.type as keyof typeof activityTypes] || "";
         }
